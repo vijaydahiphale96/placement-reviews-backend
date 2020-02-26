@@ -1,4 +1,5 @@
 import { ConnectionOptions } from "typeorm";
+import { User } from "../entities/user.entity";
 
 export const ORM_CONNECTION_OPTIONS: ConnectionOptions = {
     type: 'mariadb',
@@ -11,5 +12,6 @@ export const ORM_CONNECTION_OPTIONS: ConnectionOptions = {
     logging: false,
     cache: false,
     entities: [
+        User
     ]
 }
