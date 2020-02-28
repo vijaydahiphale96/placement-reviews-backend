@@ -4,6 +4,7 @@ import { College } from "../entities/college.entity";
 import { Company } from "../entities/company.entity";
 import { AccessToken } from "../entities/access-token.entity";
 import { Review } from "../entities/review.enity";
+import { Role } from "../entities/role.entity";
 
 export const ORM_CONNECTION_OPTIONS: ConnectionOptions = {
     type: 'mariadb',
@@ -17,6 +18,7 @@ export const ORM_CONNECTION_OPTIONS: ConnectionOptions = {
     cache: false,
     entities: [
         User,
+        Role,
         Company,
         College,
         AccessToken,
