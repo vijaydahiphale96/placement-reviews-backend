@@ -23,10 +23,6 @@ export class User {
     @IsEmail()
     public emailId: string;
 
-    @Column({ default: false })
-    @IsBoolean()
-    public isEmailIdVerified: boolean;
-
     @Column({ default: '12345' })
     @IsString()
     public password: string;
@@ -38,7 +34,12 @@ export class User {
     @Column({ default: false })
     @IsOptional()
     @IsBoolean()
-    public isAdmin?: boolean;
+    public roleId?: boolean;
+
+    @Column({ default: false })
+    @IsOptional()
+    @IsBoolean()
+    public isEmailIdVerified?: boolean;
 
     @Column({ default: 0 })
     @IsOptional()
