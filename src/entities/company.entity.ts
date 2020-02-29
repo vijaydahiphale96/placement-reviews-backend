@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, OneToMany } from "typeorm";
-import { IsString, IsBoolean, IsOptional, ValidateNested } from "class-validator";
+import { IsString, IsBoolean, IsOptional, ValidateNested, IsNumber } from "class-validator";
 import { User } from "./user.entity";
 import { Review } from "./review.enity";
 
@@ -17,6 +17,11 @@ export class Company {
     public isVerified: boolean;
 
     // Optional:-
+    @Column({ default: 0 })
+    @IsOptional()
+    @IsNumber()
+    public favoriteCount?: number;
+
     @Column()
     @IsOptional()
     @IsString()

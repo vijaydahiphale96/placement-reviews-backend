@@ -11,6 +11,7 @@ import { UserController } from './controllers/user-controller';
 import { ReviewController } from './controllers/review-controller';
 import { CompanyController } from './controllers/company-controller';
 import { AccessTokenController } from './controllers/access-token-controller';
+import { CompanyLogController } from './controllers/company-log-controller';
 
 let PORT = 4000;
 
@@ -28,7 +29,8 @@ createConnection(ORM_CONNECTION_OPTIONS).then(async (connection: Connection) => 
       UserController,
       ReviewController,
       CompanyController,
-      AccessTokenController
+      AccessTokenController,
+      CompanyLogController
     ],
     middlewares: [],
     errorOverridingMap: {

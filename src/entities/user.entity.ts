@@ -4,6 +4,7 @@ import { AccessToken } from "./access-token.entity";
 import { Company } from "./company.entity";
 import { Review } from "./review.enity";
 import { College } from "./college.entity";
+import { CompanyLog } from "./company-log.entity";
 
 @Entity()
 export class User {
@@ -74,6 +75,9 @@ export class User {
     @JoinTable()
     @ValidateNested()
     public spammedReviews: Review[];
+
+    @OneToMany(type => CompanyLog, companyLogs => companyLogs.user)
+    public companyLogs: CompanyLog[];
 
     // Not needed for single college schema
     @ManyToOne(type => College, college => college.users)
