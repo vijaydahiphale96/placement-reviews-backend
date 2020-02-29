@@ -7,6 +7,10 @@ import { useContainer, useExpressServer } from 'routing-controllers';
 import { ApiAuthorizationCheck } from './shared/middlewares/api-authorization';
 import { ApiTest } from './controllers/api-test-controller';
 import { ORM_CONNECTION_OPTIONS } from './config/orm-config.constants';
+import { UserController } from './controllers/user-controller';
+import { ReviewController } from './controllers/review-controller';
+import { CompanyController } from './controllers/company-controller';
+import { AccessTokenController } from './controllers/access-token-controller';
 
 let PORT = 4000;
 
@@ -20,7 +24,11 @@ createConnection(ORM_CONNECTION_OPTIONS).then(async (connection: Connection) => 
     cors: true,
     classTransformer: true,
     controllers: [
-      ApiTest
+      ApiTest,
+      UserController,
+      ReviewController,
+      CompanyController,
+      AccessTokenController
     ],
     middlewares: [],
     errorOverridingMap: {
