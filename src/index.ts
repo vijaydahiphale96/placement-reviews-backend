@@ -5,7 +5,7 @@ import * as bodyParser from 'body-parser';
 import { Container } from 'typedi';
 import { useContainer, useExpressServer } from 'routing-controllers';
 import { ApiAuthorizationCheck } from './shared/middlewares/api-authorization';
-import { ApiTest } from './controllers/api-test-controller';
+import { ApiTest } from './controllers/api-test.controller';
 import { ORM_CONNECTION_OPTIONS } from './config/orm-config.constants';
 
 let PORT = 4000;
