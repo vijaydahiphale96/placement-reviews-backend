@@ -26,6 +26,6 @@ export class UserController {
     @HttpCode(201)
     public addUser(@EntityFromBody() user: User) {
 
-        return user;
+        return this.userManagerService.addUser(user);
     }
 }

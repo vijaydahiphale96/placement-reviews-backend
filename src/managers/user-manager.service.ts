@@ -1,5 +1,6 @@
 import { Service, Inject } from "typedi";
 import { UserAccessService } from "../access/user-access.service";
+import { User } from "../entities/user.entity";
 
 
 
@@ -11,6 +12,14 @@ export class UserManagerService {
 
     constructor() {
 
+    }
+
+    addUser(user: User) {
+        user.createdAt = new Date();
+        user.roleId = 1;
+        user.isEmailIdVerified = false;
+
+        return this.userAccessService.addUser(user);
     }
 
 }

@@ -31,10 +31,10 @@ export class User {
     public createdAt: Date;
 
     // Optional:-
-    @Column({ default: false })
+    @Column({ default: 1 })
     @IsOptional()
-    @IsBoolean()
-    public roleId?: boolean;
+    @IsNumber()
+    public roleId?: number;
 
     @Column({ default: false })
     @IsOptional()
