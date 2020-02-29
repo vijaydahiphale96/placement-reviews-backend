@@ -1,5 +1,4 @@
-import { Authorized, Get, HttpCode, JsonController, Post } from 'routing-controllers';
-import { EntityFromBody } from 'typeorm-routing-controllers-extensions';
+import { Authorized, Get, HttpCode, JsonController, Post, Body } from 'routing-controllers';
 import { Service, Inject } from 'typedi';
 import { User } from '../entities/user.entity';
 import { UserManagerService } from '../managers/user-manager.service';
@@ -24,7 +23,7 @@ export class UserController {
 
     @Post('/user')
     @HttpCode(201)
-    public addUser(@EntityFromBody() user: User) {
+    public addUser(@Body() user: User) {
 
         return this.userManagerService.addUser(user);
     }
