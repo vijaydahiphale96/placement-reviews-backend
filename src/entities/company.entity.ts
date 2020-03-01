@@ -12,9 +12,10 @@ export class Company {
     @IsString()
     public companyName: string
 
-    @Column({ default: false })
-    @IsBoolean()
-    public isVerified: boolean;
+    // @Column({ default: false })
+    // @IsOptional()
+    // @IsBoolean()
+    // public isVerified?: boolean;
 
     // Optional:-
     @Column({ default: 0 })

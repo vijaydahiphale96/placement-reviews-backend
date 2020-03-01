@@ -12,4 +12,9 @@ export class CompanyAccessService {
     constructor() {
         this.companyRepository = getRepository(Company);
     }
+
+    addCompany(company: Company): Promise<Company> {
+        return this.companyRepository.save(company);
+    }
+
 }

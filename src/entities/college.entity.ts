@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { IsString, IsBoolean } from "class-validator";
+import { IsString, IsBoolean, IsOptional } from "class-validator";
 import { User } from "./user.entity";
 import { Review } from "./review.enity";
 
@@ -16,9 +16,10 @@ export class College {
     @IsString()
     public collegeShortName: string
 
-    @Column({ default: false })
-    @IsBoolean()
-    public isVerified: boolean;
+    // @Column({ default: false })
+    // @IsOptional()
+    // @IsBoolean()
+    // public isVerified?: boolean;
 
     // Relational
 

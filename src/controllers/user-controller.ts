@@ -21,7 +21,7 @@ export class UserController {
         return [];
     }
 
-    @Post('/user')
+    @Post('/add-user')
     @HttpCode(201)
     public addUser(@Body() user: User) {
 
