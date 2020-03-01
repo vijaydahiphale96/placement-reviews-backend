@@ -14,8 +14,16 @@ export class CompanyManagerService {
 
     }
 
+    getCompanies() {
+        return this.companyAccessService.getCompanies();
+    }
+
     addCompany(company: Company) {
         return this.companyAccessService.addCompany(company);
+    }
+
+    updateCompany(company: Company) {
+        return this.companyAccessService.updateCompany(company);
     }
 
 }

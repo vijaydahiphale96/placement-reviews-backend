@@ -13,7 +13,15 @@ export class CompanyAccessService {
         this.companyRepository = getRepository(Company);
     }
 
+    async getCompanies(): Promise<Company[]> {
+        return await this.companyRepository.find();
+    }
+
     addCompany(company: Company): Promise<Company> {
+        return this.companyRepository.save(company);
+    }
+
+    updateCompany(company: Company) {
         return this.companyRepository.save(company);
     }
 
