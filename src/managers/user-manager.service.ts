@@ -6,7 +6,7 @@ import { AccessTokenAccessService } from "../access/access-token-access.service"
 import { UnauthorizedError } from "routing-controllers";
 import { AccessToken } from "../entities/access-token.entity";
 import { CollegeAccessService } from "../access/college-access.service";
-
+import { uuid as uuidv4 } from 'uuidv4';
 
 
 @Service()
@@ -46,7 +46,7 @@ export class UserManagerService {
     }
 
     generateAccessToken(): string {
-        return 'vijay12345vijay';
+        return uuidv4();
     }
 
 }
