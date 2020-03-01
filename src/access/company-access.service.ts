@@ -17,12 +17,12 @@ export class CompanyAccessService {
         return await this.companyRepository.find();
     }
 
-    addCompany(company: Company): Promise<Company> {
-        return this.companyRepository.save(company);
+    async addCompany(company: Company): Promise<Company> {
+        return await this.companyRepository.save(company);
     }
 
-    updateCompany(company: Company) {
-        return this.companyRepository.save(company);
+    async updateCompany(company: Company): Promise<Company> {
+        return await this.companyRepository.save(company);
     }
 
 }

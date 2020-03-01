@@ -2,6 +2,7 @@ import { Authorized, Get, HttpCode, JsonController, Post, Body } from 'routing-c
 import { Service, Inject } from 'typedi';
 import { User } from '../entities/user.entity';
 import { UserManagerService } from '../managers/user-manager.service';
+import { UserLoginData } from '../shared/models/user.model';
 
 @Service()
 @JsonController()
@@ -21,7 +22,14 @@ export class UserController {
         return [];
     }
 
-    @Post('/add-user')
+    @Post('/login')
+    @HttpCode(201)
+    public login(@Body() userLoginData: UserLoginData) {
+
+        return this.userManagerService.login(userLoginData);
+    }
+
+    @Post('/sign-up')
     @HttpCode(201)
     public addUser(@Body() user: User) {
 

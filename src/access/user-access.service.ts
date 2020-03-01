@@ -2,6 +2,7 @@ import { Service } from "typedi";
 import { Repository, getRepository } from "typeorm";
 import { User } from "../entities/user.entity";
 import { College } from "../entities/college.entity";
+import { UserLoginData } from "../shared/models/user.model";
 
 
 
@@ -17,9 +18,15 @@ export class UserAccessService {
     }
 
     async addUser(user: User): Promise<User> {
-        const college = await this.collegeRepository.findOne(1);
-        user.college = college;
-        return this.userRepository.save(user);
+        user.createdAt = new Date();
+        user.roleId = 1;
+        user.isEmailIdVerified = false;
+        return await this.userRepository.save(user);
+    }
+
+    async findUserData(userLoginData: UserLoginData): Promise<any> {
+        userLoginData.isEmailIdVerified = true;
+        return await this.userRepository.findOne(userLoginData);
     }
 
 }
