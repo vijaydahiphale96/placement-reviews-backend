@@ -33,9 +33,9 @@ export class UserManagerService {
     }
 
     async login(userLoginData: UserLoginData): Promise<BaseResponse> {
-        const user: User = await this.userAccessService.findUserData(userLoginData);
+        const user: User | undefined = await this.userAccessService.findUserData(userLoginData);
         if (!user) {
-            throw new UnauthorizedError('Invalid emailId or password');
+            return new BaseResponse(true, '', new CustomError(100, 'INVALID_USER_LOGIN_DATA', 'Invalid emailId or password'));
         }
         const accessToken = this.generateAccessToken();
         const accessTokenEntity: AccessToken = new AccessToken();

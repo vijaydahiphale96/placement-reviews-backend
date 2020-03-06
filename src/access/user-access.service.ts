@@ -24,7 +24,7 @@ export class UserAccessService {
         return await this.userRepository.save(user);
     }
 
-    async findUserData(userLoginData: UserLoginData): Promise<any> {
+    async findUserData(userLoginData: UserLoginData): Promise<User | undefined> {
         userLoginData.isEmailIdVerified = true;
         return await this.userRepository.findOne(userLoginData);
     }
