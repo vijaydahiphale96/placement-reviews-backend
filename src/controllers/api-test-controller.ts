@@ -10,7 +10,7 @@ export class ApiTest {
     @Get('/test')
     @HttpCode(201)
     public testApi() {
-        const newObj = new BaseResponse();
-        return newObj;
+        // const newObj = new BaseResponse();
+        return {};
     }
 }

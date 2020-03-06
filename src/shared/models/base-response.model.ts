@@ -1,11 +1,23 @@
 export class BaseResponse {
-  hasError: boolean = false;
-  error: CustomError = new CustomError();
-  data: any = {};
+  hasError: boolean;
+  data: any;
+  error: CustomError
+
+  constructor(hasError: boolean, data: any, error?: CustomError, ) {
+    this.hasError = hasError ? hasError : false;
+    this.data = data;
+    this.error = error ? error : new CustomError(0, '', '');
+  }
 }
 
 export class CustomError {
-  code: number = 0;
-  title: string = '';
-  message: string = '';
+  code: number;
+  title: string;
+  message: string;
+
+  constructor(code: number, title: string, message: string) {
+    this.code = code ? code : 0;
+    this.title = title ? title : '';
+    this.message = message ? message : '';
+  }
 }

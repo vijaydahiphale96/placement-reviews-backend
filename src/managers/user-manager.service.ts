@@ -7,6 +7,7 @@ import { UnauthorizedError } from "routing-controllers";
 import { AccessToken } from "../entities/access-token.entity";
 import { CollegeAccessService } from "../access/college-access.service";
 import { uuid as uuidv4 } from 'uuidv4';
+import { BaseResponse, CustomError } from "../shared/models/base-response.model";
 
 
 @Service()
@@ -31,7 +32,7 @@ export class UserManagerService {
         return this.userAccessService.addUser(user);
     }
 
-    async login(userLoginData: UserLoginData): Promise<AccessToken> {
+    async login(userLoginData: UserLoginData): Promise<BaseResponse> {
         const user: User = await this.userAccessService.findUserData(userLoginData);
         if (!user) {
             throw new UnauthorizedError('Invalid emailId or password');
@@ -42,7 +43,12 @@ export class UserManagerService {
         accessTokenEntity.createdAt = new Date();
         accessTokenEntity.user = user;
 
-        return this.accessTokenAccessService.addAccessToken(accessTokenEntity);
+        const tempAccessToken = await this.accessTokenAccessService.addAccessToken(accessTokenEntity);
+        if (tempAccessToken) {
+            return new BaseResponse(false, tempAccessToken);
+        } else {
+            return new BaseResponse(true, '', new CustomError(100, '', ''));
+        }
     }
 
     generateAccessToken(): string {
