@@ -8,6 +8,7 @@ import { AccessToken } from "../entities/access-token.entity";
 import { CollegeAccessService } from "../access/college-access.service";
 import { uuid as uuidv4 } from 'uuidv4';
 import { BaseResponse, CustomError } from "../shared/models/base-response.model";
+import { CustomErrors } from "../shared/errors/custom-errors";
 
 
 @Service()
@@ -35,7 +36,7 @@ export class UserManagerService {
     async login(userLoginData: UserLoginData): Promise<BaseResponse> {
         const user: User | undefined = await this.userAccessService.findUserData(userLoginData);
         if (!user) {
-            return new BaseResponse(true, '', new CustomError(100, 'INVALID_USER_LOGIN_DATA', 'Invalid emailId or password'));
+            return new BaseResponse(true, '', new CustomError(CustomErrors.WRONG_USER_LOGIN_CREDENTIAL.code, CustomErrors.WRONG_USER_LOGIN_CREDENTIAL.title, CustomErrors.WRONG_USER_LOGIN_CREDENTIAL.message));
         }
         const accessToken = this.generateAccessToken();
         const accessTokenEntity: AccessToken = new AccessToken();
@@ -47,7 +48,7 @@ export class UserManagerService {
         if (tempAccessToken) {
             return new BaseResponse(false, tempAccessToken);
         } else {
-            return new BaseResponse(true, '', new CustomError(100, '', ''));
+            return new BaseResponse(true, '', new CustomError(CustomErrors.UNABLE_TO_ADD_DATA.code, CustomErrors.UNABLE_TO_ADD_DATA.title, CustomErrors.UNABLE_TO_ADD_DATA.message.concat(' Accesstoken')));
         }
     }
 

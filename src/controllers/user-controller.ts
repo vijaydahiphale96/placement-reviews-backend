@@ -4,6 +4,7 @@ import { User } from '../entities/user.entity';
 import { UserManagerService } from '../managers/user-manager.service';
 import { UserLoginData } from '../shared/models/user.model';
 import { BaseResponse, CustomError } from '../shared/models/base-response.model';
+import { CustomErrors } from '../shared/errors/custom-errors';
 
 @Service()
 @JsonController()
@@ -27,17 +28,17 @@ export class UserController {
     @HttpCode(201)
     public async login(@Body() userLoginData: UserLoginData): Promise<BaseResponse> {
         if (!userLoginData) {
-            return new BaseResponse(true, '', new CustomError(100, 'BAD_REQUEST', 'emailId and password field is missing'));
+            return new BaseResponse(true, '', new CustomError(CustomErrors.BAD_REQUEST.code, CustomErrors.BAD_REQUEST.title, 'emailId and password '.concat(CustomErrors.BAD_REQUEST.message)));
         } else if (!userLoginData.emailId) {
-            return new BaseResponse(true, '', new CustomError(100, 'BAD_REQUEST', 'emailId field is missing'));
+            return new BaseResponse(true, '', new CustomError(CustomErrors.BAD_REQUEST.code, CustomErrors.BAD_REQUEST.title, 'emailId '.concat(CustomErrors.BAD_REQUEST.message)));
         } else if (!userLoginData.password) {
-            return new BaseResponse(true, '', new CustomError(100, 'BAD_REQUEST', 'password field is missing'));
+            return new BaseResponse(true, '', new CustomError(CustomErrors.BAD_REQUEST.code, CustomErrors.BAD_REQUEST.title, 'password '.concat(CustomErrors.BAD_REQUEST.message)));
         }
 
         try {
             return await this.userManagerService.login(userLoginData);
         } catch (error) {
-            return new BaseResponse(true, '', new CustomError(100, 'CANT_HANDLE_REQUEST', 'Server was unable to handle request'));
+            return new BaseResponse(true, '', new CustomError(CustomErrors.UNABLE_TO_HANDLE_REQUEST.code, CustomErrors.UNABLE_TO_HANDLE_REQUEST.title, CustomErrors.UNABLE_TO_HANDLE_REQUEST.message));
         }
     }
 
