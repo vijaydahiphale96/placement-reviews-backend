@@ -1,9 +1,9 @@
-export class BaseResponse {
+export class BaseResponse<T> {
   hasError: boolean;
-  data: any;
+  data: T;
   error: CustomError
 
-  constructor(hasError: boolean, data: any, error?: CustomError, ) {
+  constructor(hasError: boolean, data: T, error?: CustomError, ) {
     this.hasError = hasError ? hasError : false;
     this.data = data;
     this.error = error ? error : new CustomError(0, '', '');

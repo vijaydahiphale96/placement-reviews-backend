@@ -24,7 +24,11 @@ export const CustomErrors = {
         title: 'UNABLE_TO_DELETE_DATA',
         message: 'Server was unable to delete'
     },
-
+    DATA_NOT_FOUND: {
+        code: 405,
+        title: 'DATA_NOT_FOUND',
+        message: 'not found'
+    },
 
 
 
