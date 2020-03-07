@@ -14,8 +14,8 @@ export class CompanyManagerService {
 
     }
 
-    getCompanies() {
-        return this.companyAccessService.getCompanies();
+    async getAllCompanies() {
+        return await this.companyAccessService.getAllCompanies();
     }
 
     addCompany(company: Company) {

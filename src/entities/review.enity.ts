@@ -42,7 +42,7 @@ export class Review {
 
     @Column()
     @IsString()
-    public tittle: string
+    public title: string
 
     @Column()
     @IsString()
