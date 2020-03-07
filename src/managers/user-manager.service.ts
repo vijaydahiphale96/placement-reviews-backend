@@ -53,11 +53,7 @@ export class UserManagerService {
     }
 
     async logout(accessToken: string): Promise<BaseResponse<string | null>> {
-        const accessTokenData: AccessToken | undefined = await this.accessTokenAccessService.findAccessToken(accessToken);
-        if (!accessTokenData) {
-            return new BaseResponse(true, null, new CustomError(CustomErrors.DATA_NOT_FOUND.code, CustomErrors.DATA_NOT_FOUND.title, 'accessToken '.concat(CustomErrors.DATA_NOT_FOUND.message)));
-        }
-        const deletedData = await this.accessTokenAccessService.deleteAccessToken(accessTokenData);
+        const deletedData = await this.accessTokenAccessService.deleteAccessToken(accessToken);
         if (deletedData) {
             return new BaseResponse(false, 'Logout Successful');
         } else {

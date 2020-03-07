@@ -19,12 +19,8 @@ export class AccessTokenAccessService {
         return await this.accessTokenRepository.save(accessToken);
     }
 
-    async findAccessToken(accessToken: string): Promise<AccessToken | undefined> {
-        return await this.accessTokenRepository.findOne({ accessToken: accessToken });
-    }
-
-    async deleteAccessToken(accessTokenData: AccessToken): Promise<DeleteResult> {
-        return await this.accessTokenRepository.delete(accessTokenData);
+    async deleteAccessToken(accessToken: string): Promise<DeleteResult> {
+        return await this.accessTokenRepository.delete({ accessToken: accessToken });
     }
 
 }
