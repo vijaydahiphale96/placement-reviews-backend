@@ -1,6 +1,8 @@
 import { Service, Inject } from "typedi";
 import { CompanyAccessService } from "../access/company-access.service";
 import { Company } from "../entities/company.entity";
+import { BaseResponse, CustomError } from "../shared/models/base-response.model";
+import { CustomErrors } from "../shared/errors/custom-errors";
 
 
 
@@ -15,7 +17,12 @@ export class CompanyManagerService {
     }
 
     async getAllCompanies() {
-        return await this.companyAccessService.getAllCompanies();
+        const companies: Company[] = await this.companyAccessService.getAllCompanies();
+        if (companies) {
+            return new BaseResponse(false, companies);
+        } else {
+            return new BaseResponse(true, null, new CustomError(CustomErrors.DATA_NOT_FOUND.code, CustomErrors.DATA_NOT_FOUND.title, 'Company '.concat(CustomErrors.DATA_NOT_FOUND.message)));
+        }
     }
 
     addCompany(company: Company) {
