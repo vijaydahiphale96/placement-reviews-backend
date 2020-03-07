@@ -1,8 +1,6 @@
 import { Service } from "typedi";
 import { Repository, getRepository, DeleteResult } from "typeorm";
 import { AccessToken } from "../entities/access-token.entity";
-import { UserLoginData } from "../shared/models/user.model";
-import { User } from "../entities/user.entity";
 
 
 
