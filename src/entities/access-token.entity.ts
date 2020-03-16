@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm";
-import { IsString, IsNumber, ValidateNested, IsOptional } from "class-validator";
+import { IsString, IsNumber, ValidateNested, IsOptional, IsDate } from "class-validator";
 import { User } from "./user.entity";
 
 @Entity()
@@ -11,9 +11,14 @@ export class AccessToken {
     @IsString()
     public accessToken: string
 
-    @CreateDateColumn()
+    // @CreateDateColumn()
+    // @IsOptional()
+    // public createdAt?: Date;
+
+    @Column()
+    @IsDate()
     @IsOptional()
-    public createdAt?: Date;
+    public lastAccessedAt?: Date;
 
     // Relational:-
     @ManyToOne(type => User, user => user.accessTokens)

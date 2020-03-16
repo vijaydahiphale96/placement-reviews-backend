@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm";
-import { IsString, IsBoolean, ValidateNested, IsOptional, IsNumber } from "class-validator";
+import { IsString, IsBoolean, ValidateNested, IsOptional, IsNumber, IsDate } from "class-validator";
 import { Company } from "./company.entity";
 import { User } from "./user.entity";
 import { College } from "./college.entity";
@@ -11,6 +11,16 @@ export class Review {
 
     @CreateDateColumn()
     public createdAt: Date;
+
+    @Column()
+    @IsDate()
+    @IsOptional()
+    public lastUpdatedAt?: Date;
+
+    @Column({ default: false })
+    @IsOptional()
+    @IsBoolean()
+    public isVerified?: boolean;
 
     @Column({ default: 0 })
     @IsOptional()

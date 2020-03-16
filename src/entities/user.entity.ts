@@ -37,10 +37,10 @@ export class User {
     @IsNumber()
     public roleId?: number;
 
-    @Column({ default: false })
-    @IsOptional()
-    @IsBoolean()
-    public isEmailIdVerified?: boolean;
+    // @Column({ default: false })
+    // @IsOptional()
+    // @IsBoolean()
+    // public isEmailIdVerified?: boolean;
 
     @Column({ default: 0 })
     @IsOptional()

@@ -20,12 +20,12 @@ export class UserAccessService {
     async addUser(user: User): Promise<User> {
         user.createdAt = new Date();
         user.roleId = 1;
-        user.isEmailIdVerified = false;
+        // user.isEmailIdVerified = false;
         return await this.userRepository.save(user);
     }
 
     async findUserData(userLoginData: UserLoginData): Promise<User | undefined> {
-        userLoginData.isEmailIdVerified = true;
+        // userLoginData.isEmailIdVerified = true;
         return await this.userRepository.findOne(userLoginData);
     }
 

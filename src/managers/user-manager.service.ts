@@ -41,7 +41,8 @@ export class UserManagerService {
         const accessToken = this.generateAccessToken();
         const accessTokenEntity: AccessToken = new AccessToken();
         accessTokenEntity.accessToken = accessToken;
-        accessTokenEntity.createdAt = new Date();
+        // accessTokenEntity.createdAt = new Date();
+        accessTokenEntity.lastAccessedAt = new Date();
         accessTokenEntity.user = user;
 
         const tempAccessToken = await this.accessTokenAccessService.addAccessToken(accessTokenEntity);
